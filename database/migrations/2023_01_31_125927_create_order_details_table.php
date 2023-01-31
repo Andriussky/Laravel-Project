@@ -15,7 +15,17 @@ return new class extends Migration
     {
         Schema::create('order_details', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('order_id');
+            $table->string('product_name');
+            $table->unsignedBigInteger('product_id');
+            $table->bigInteger('quantity');
+            $table->string('price');
+            $table->unsignedBigInteger('status_id');
             $table->timestamps();
+
+            $table->foreign('order_id')->references('id')->on('orders');
+            $table->foreign('product_id')->references('id')->on('products');
+            $table->foreign('status_id')->references('id')->on('statuses');
         });
     }
 

@@ -22,7 +22,11 @@ return new class extends Migration
             $table->unsignedBigInteger('status_id');
             $table->timestamps();
 
-
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('shipping_address_id')->references('id')->on('addresses');
+            $table->foreign('billing_address_id')->references('id')->on('addresses');
+            $table->foreign('payment_id')->references('id')->on('payments');
+            $table->foreign('status_id')->references('id')->on('statuses');
         });
     }
 
