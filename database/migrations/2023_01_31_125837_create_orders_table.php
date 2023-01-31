@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('shipping_address_id');
             $table->unsignedBigInteger('billing_address_id');
             $table->unsignedBigInteger('payment_id');
-            $table->unsignedBigInteger('status_idf');
+            $table->unsignedBigInteger('status_id');
             $table->timestamps();
 
 
