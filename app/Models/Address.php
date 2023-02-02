@@ -6,7 +6,6 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-
 /**
  * @property int $id
  * @property string $name
@@ -23,9 +22,21 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon $created_at
  * @property Carbon $updated_at
  */
-
-
 class Address extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'country',
+        'city',
+        'zip',
+        'street',
+        'house_number',
+        'apartment_number',
+        'state',
+        'type',
+        'additional_info',
+        'user_id',
+    ];
 }

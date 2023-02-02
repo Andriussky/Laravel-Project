@@ -16,10 +16,21 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $status_id
  * @property Carbon $created_at
  * @property Carbon $updated_at
+ *
  */
-
-
 class OrderDetails extends Model
 {
     use HasFactory;
+
+    protected $guarded = [
+        'price',
+        'status_id',
+    ];
+
+    protected $fillable = [
+        'order_id',
+        'product_name',
+        'product_id',
+        'quantity',
+    ];
 }
