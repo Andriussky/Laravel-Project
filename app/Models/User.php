@@ -2,26 +2,26 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
 /**
+ * Class User
+ * @package App\Models
+ *
  * @property int $id
  * @property string $name
  * @property string $email
- * @property carbon $email_verified_at
+ * @property Carbon $email_verified_at
  * @property string $password
  * @property string $remember_token
  * @property Carbon $created_at
  * @property Carbon $updated_at
  */
-
-
-
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -55,4 +55,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function person(): HasMany
+    {
+        return $this->hasMany(Person::class);
+    }
+
+    public function orders(): HasMany
+    {
+        return $this->hasMany(Order::class);
+    }
 }
