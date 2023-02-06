@@ -1,12 +1,18 @@
 <?php
 
+use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\AddressController;
+use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\PersonController;
+use App\Http\Controllers\StatusController;
+use App\Http\Controllers\OrdersController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\HomeController;
 use App\Models\Order;
 use App\Models\Product;
-use Database\Factories\ProductFactory;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
+/*|--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
 |
@@ -16,62 +22,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', HomeController::class);
 
+// Senas Routinimo variantas kai norime atskirai nurodyti kiekvieną route
+//
+//Route::get('/products', [ProductsController::class, 'index']);
+//Route::get('/products/create', [ProductsController::class, 'create']);
+//Route::post('/products', [ProductsController::class, 'store']);
+//Route::get('/products/{product}', [ProductsController::class, 'show']);
+//Route::get('/products/{product}/edit', [ProductsController::class, 'edit']);
+//Route::put('/products/{product}', [ProductsController::class, 'update']);
+//Route::delete('/products/{product}', [ProductsController::class, 'destroy']);
 
-Route::get('/product/{id}', function ($id) {
-    $product = Product::firstOrCreate(
-        [
-            'id' => $id
-        ],
-        [
-            'name' => 'Londonas to Paris',
-            'category_id' => 5,
-            'price' => 1000,
-            'status_id' => 5,
-            'slug' => 'london-to-parisasdfgh',
-            'description' => 'London to Paris',
-            'image' => 'london-to-paris.jpg',
-            'color' => 'red',
-            'size' => 'XL'
-        ]
-    );
-
-    return $product;
-});
-
-Route::get('/products', function () {
-    return Product::query()->with(['category', 'status'])->get();
-});
-
-Route::get('/products-del', function () {
-    return Product::all()->map(function ($product) {
-        $product->delete();
-    });
-});
-
-Route::get('/new-product', function () {
-
-    $duomenys = [
-        'name' => 'Apple',
-        'category_id' => 5,
-        'price' => 1000,
-        'status_id' => 5,
-        'slug' => 'apple',
-        'description' => 'Mmmm..',
-        'image' => 'london-to-paris.jpg',
-        'color' => 'red',
-        'size' => 'XL',
-    ];
-
-    $product  = Product::create($duomenys);
-
-    dd($product);
-
-});
-
-Route::get('/order/{order}', function (Order $order) {
-    return $order->products;
-});
+// Naujas Routinimo variantas kai norime naudoti resources standartizuotą routinimą
+Route::resources([
+    'products' => ProductsController::class,
+    'categories' => CategoriesController::class,
+    'orders' => OrdersController::class,
+    'statuses' => StatusController::class,
+    'addresses' => AddressController::class,
+    'users' => UserController::class,
+]);
