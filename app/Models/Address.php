@@ -27,6 +27,10 @@ class Address extends Model
 {
     use HasFactory;
 
+    protected $guarded = [
+      'user_id',
+    ];
+
     protected $fillable = [
         'name',
         'country',

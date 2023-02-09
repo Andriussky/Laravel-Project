@@ -32,12 +32,13 @@ class Order extends Model
     protected  $guarded = [
         'status_id',
         'payment_id',
-        'user_id',
+
     ];
 
     protected $fillable = [
         'shipping_address_id',
         'billing_address_id',
+        'user_id',
     ];
 
     public function user(): BelongsTo

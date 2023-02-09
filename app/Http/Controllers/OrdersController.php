@@ -2,12 +2,55 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OrderRequest;
+use App\Managers\OrdersManager;
 use App\Models\Order;
 use Illuminate\Http\Request;
 
 class OrdersController extends Controller
 {
-    public function show(Order $order){
-        return $order;
+    public function index()
+    {
+        $orders =  Order::query()->with(['user', 'shippingAddress'])->get();
+
+        return view('order.index', compact('orders'));
+    }
+
+    public function create()
+    {
+        return view('order.create');
+    }
+
+    public function store(OrderRequest $request)
+    {
+
+
+        $order = Order::create($request->all());
+        return redirect()->route('orders.show', $order);
+    }
+
+    public function show(Order $order)
+    {
+        return view('order.show', ['order' => $order]);
+
+    }
+
+    public function edit(Order $order)
+    {
+        return view('order.edit', compact('order'));
+    }
+
+    public function update(OrderRequest $request, Order $order)
+    {
+
+
+        $order->update($request->all());
+        return redirect()->route('order.show', $order);
+    }
+
+    public function destroy(Order $order)
+    {
+        $order->delete();
+        return redirect()->route('order.index');
     }
 }

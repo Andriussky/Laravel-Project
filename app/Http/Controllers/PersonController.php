@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PersonRequest;
 use App\Managers\PersonsManager;
 use App\Models\Person;
 use Illuminate\Http\Request;
@@ -24,8 +25,12 @@ class PersonController extends Controller
         return view('persons.create');
     }
 
-    public function store(Request $request)
+    public function store(PersonRequest $request)
+
     {
+
+
+
         $person = $this->manager->createPerson($request);
         return redirect()->route('persons.show', $person);
     }
@@ -40,8 +45,12 @@ class PersonController extends Controller
         return view('persons.edit', compact('person'));
     }
 
-    public function update(Request $request, Person $person)
+    public function update(PersonRequest $request, Person $person)
     {
+
+
+
+
         $person->update($request->all());
         return redirect()->route('persons.show', $person);
     }

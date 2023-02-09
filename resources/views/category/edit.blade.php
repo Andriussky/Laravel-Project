@@ -1,10 +1,8 @@
-<h1>New </h1>
-<span>Kurimo forma</span>
-<form action="{{route('products.store')}}" method="post">
-
+<h1>Editing {{$category->name}}</h1>
+<span>Redagavimo forma</span>
+<form action="{{route('categories.update', $category->id)}}" method="post">
+    @method('PUT')
     @csrf
-
-    <h1>Create Post</h1>
 
     @if ($errors->any())
         <div class="alert alert-danger">
@@ -20,11 +18,9 @@
     <input type="text" name="slug" placeholder="Slug" value=""><br>
     <input type="text" name="description" placeholder="Description" value=""><br>
     <input type="text" name="image" placeholder="Image" value=""><br>
-    <input type="text" name="category_id" placeholder="Category ID" value=""><br>
-    <input type="text" name="color" placeholder="Color" value=""><br>
-    <input type="text" name="size" placeholder="Size" value=""><br>
-    <input type="text" name="price" placeholder="Price" value=""><br>
-    <input type="text" name="status_id" placeholder="Status ID" value=""><br>
+    <input type="text" name="status" placeholder="Status" value=""><br>
+    <input type="text" name="sort_order" placeholder="Sort_order" value=""><br>
+
     <hr>
     <input type="submit" class="waves-effect waves-light btn" value="Atnaujinti">
 </form>

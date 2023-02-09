@@ -6,21 +6,20 @@
                 <span class="card-title"></span>
             </div>
             <div class="card-content">
-                <div>ID:{{$person->id}} </div>
-                <p>Name:{{$person->name}} </p>
-                <p>Surname:{{$person->surname}} </p>
-                <p>Email:{{$person->email}} </p>
-                <p>Phone:{{$person->phone}} </p>
-                <p>Creation date:{{ $person->created_at }} </p>
-                <p>Last updated:{{ $person->updated_at }} </p>
+                <div>ID:{{$status->id}} </div>
+                <p>Name:{{$status->name}} </p>
+                <p>Type:{{$status->type}} </p>
+                <p>Creation date:{{ $status->created_at }} </p>
+                <p>Last updated:{{ $status->updated_at }} </p>
+
             </div>
             <div class="card-action">
-                <a href="{{ route('persons.edit', $person->id) }}"
+                <a href="{{ route('statuses.edit', $status->id) }}"
                    data-tooltip="Redaguoti"
                    class="tooltipped waves-effect waves-light green btn-small">
                     <i class="tiny material-icons">edit</i>
                 </a>
-                <form action="{{ route('persons.destroy', $person->id) }}" method="POST">
+                <form action="{{ route('statuses.destroy', $status->id) }}" method="POST">
                     @csrf
                     @method('DELETE')
                     <button type="submit"data-tooltip="Šalinti"
