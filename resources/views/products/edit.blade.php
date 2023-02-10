@@ -1,18 +1,12 @@
+@extends('layouts.main')
+
 <h1>Editing {{$product->name}}</h1>
 <span>Redagavimo forma</span>
 <form action="{{route('products.update', $product->id)}}" method="post">
     @method('PUT')
     @csrf
 
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+
 
     <input type="text" name="name" placeholder="Name" value="{{$product->name}}"><br>
     <input type="text" name="slug" placeholder="Slug" value="{{$product->slug}}"><br>

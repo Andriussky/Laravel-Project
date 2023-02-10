@@ -31,6 +31,11 @@ class PersonalCode implements Rule
 
         return preg_match('/^[3-6]\d{10}$/', $value) === 1;
     }
+//  toliau nezinau kaip parasyt bet tikriausiai galimetu 3-6 if pakeist i toki kuris skaiciuoja
+//  pagal amziu  if 1st number <=1 return false nes tai butu zmogus is 19a
+// gal dar imano paziuret ar data validi if 5th number>= 3 return false nes tai butu 13 menuo
+// panasiai galima padaryti su diena, bet tada reiketu kazkaip patikrinti abu skaicius
+//
 
 
     /**
@@ -40,6 +45,6 @@ class PersonalCode implements Rule
      */
     public function message()
     {
-        return 'The :attribute must be 11 numbers and a valid personal code.';
+        return 'Asmens kodas turi turet 11 skaitmenu ir prasidet skaiciais 3-6.';
     }
 }

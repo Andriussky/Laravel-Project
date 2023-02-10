@@ -1,3 +1,5 @@
+@extends('layouts.main')
+
 <h1>New </h1>
 <span>Kurimo forma</span>
 <form action="{{route('products.store')}}" method="post">
@@ -6,15 +8,7 @@
 
     <h1>Create Post</h1>
 
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+
 
     <input type="text" name="name" placeholder="Name" value=""><br>
     <input type="text" name="slug" placeholder="Slug" value=""><br>

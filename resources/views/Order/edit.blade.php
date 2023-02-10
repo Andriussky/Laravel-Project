@@ -1,18 +1,12 @@
+@extends('layouts.main')
+
 <h1>Editing {{$order->user_id}}</h1>
 <span>Redagavimo forma</span>
 <form action="{{route('orders.update', $order->id)}}" method="post">
     @method('PUT')
     @csrf
 
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+
 
     <input type="text" name="user_id" placeholder="User_id" value=""><br>
     <input type="text" name="shipping_address_id" placeholder="Shipping_address_id" value=""><br>
