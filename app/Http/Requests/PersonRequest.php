@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\PersonalCode;
 use Illuminate\Foundation\Http\FormRequest;
 
 class PersonRequest extends FormRequest
@@ -26,7 +27,7 @@ class PersonRequest extends FormRequest
         return [
             'name' => ['required','max:255'],
             'surname' => ['required','max:255'],
-            'personal_code' => ['required','integer'],
+            'personal_code' => ['required','integer', new PersonalCode()],
             'email' => ['required','max:255'],
             'phone' => ['required','max:255'],
 
