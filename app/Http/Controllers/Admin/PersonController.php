@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\PersonRequest;
 use App\Managers\PersonsManager;
 use App\Models\Person;
-use Illuminate\Http\Request;
 
 class PersonController extends Controller
 {

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StatusRequest;
 use App\Models\Status;
-use Illuminate\Http\Request;
 
 class StatusController extends Controller
 {

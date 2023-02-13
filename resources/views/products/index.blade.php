@@ -6,9 +6,9 @@
             <thead>
             <tr>
                 <th>ID</th>
-                <th>Title</th>
+                <th>{{__('products.name')}}</th>
                 <th>Price</th>
-                <th>Actions</th>
+                <th>{{__('messages.actions')}}</th>
             </tr>
             </thead>
             <tbody>

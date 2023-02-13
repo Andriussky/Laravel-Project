@@ -1,3 +1,6 @@
+@include('layouts.header')
+@include('layouts.footer')
+
 @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
@@ -7,3 +10,5 @@
         </ul>
     </div>
 @endif
+
+@yield('section')

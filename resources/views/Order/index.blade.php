@@ -1,3 +1,5 @@
+@extends('layouts.main')
+
 <div class="row">
     <div class="col s12">
         <h1>Orders</h1>
@@ -30,3 +32,4 @@
             </tbody>
         </table>
     </div>
+</div>

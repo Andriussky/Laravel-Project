@@ -1,3 +1,5 @@
+@extends('layouts.header')
+
 <div class="row">
 <div class="col s12">
     <h1>Statuses</h1>
@@ -29,4 +31,5 @@
         @endforeach
         </tbody>
     </table>
+</div>
 </div>
