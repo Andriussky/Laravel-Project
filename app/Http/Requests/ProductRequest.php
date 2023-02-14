@@ -34,8 +34,8 @@ class ProductRequest extends FormRequest
 
             'description' => ['nullable', 'string', 'min:3'],
             'image' => ['nullable'],
-            'color' => ['nullable', 'in_array:Red,Green,Blue,Black,White'],
-            'size' => ['nullable', 'in_array:XS,S,M,L,XL'],
+            'color' => ['nullable'],
+            'size' => ['nullable'],
         ];
     }
 
