@@ -9,7 +9,7 @@
         <tr>
             <th>ID</th>
             <th>Name</th>
-            <th>Surname</th>
+            <th>Type</th>
             <th>Actions</th>
         </tr>
         </thead>
