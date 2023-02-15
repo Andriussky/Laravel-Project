@@ -1,18 +1,10 @@
 <?php
 
-use App\Http\Controllers\Admin\AddressController;
-use App\Http\Controllers\Admin\CategoriesController;
-use App\Http\Controllers\Admin\OrdersController;
-use App\Http\Controllers\Admin\PersonController;
-use App\Http\Controllers\Admin\ProductsController;
-use App\Http\Controllers\Admin\StatusController;
-use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Middleware\SetLocale;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-/*|--------------------------------------------------------------------------
+/*
+|--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
 |
@@ -22,32 +14,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Senas Routinimo variantas kai norime atskirai nurodyti kiekvieną route
-//
-//Route::get('/products', [ProductsController::class, 'index']);
-//Route::get('/products/create', [ProductsController::class, 'create']);
-//Route::post('/products', [ProductsController::class, 'store']);
-//Route::get('/products/{product}', [ProductsController::class, 'show']);
-//Route::get('/products/{product}/edit', [ProductsController::class, 'edit']);
-//Route::put('/products/{product}', [ProductsController::class, 'update']);
-//Route::delete('/products/{product}', [ProductsController::class, 'destroy']);
-
-// Naujas Routinimo variantas kai norime naudoti resources standartizuotą routinimą
-
-
-Route::group(['middleware' => SetLocale::class], function () {
-Route::get('/', HomeController::class);
-Route::group(['prefix' => 'admin'], function (){
-    Route::get('/', DashboardController::class)->name('admin.dashboard');
-    Route::resources([
-        'products' => ProductsController::class,
-        'categories' => CategoriesController::class,
-        'orders' => OrdersController::class,
-        'statuses' => StatusController::class,
-        'addresses' => AddressController::class,
-        'users' => UserController::class,
-        'persons' => PersonController::class,
-    ]);
-});
+Route::get('/', function () {
+    return view('welcome');
 });
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';
