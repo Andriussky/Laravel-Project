@@ -1,5 +1,5 @@
-@include('layouts.header')
-@include('layouts.footer')
+@include('Layouts.header')
+@include('Layouts.footer')
 
 @if ($errors->any())
     <div class="alert alert-danger">
@@ -11,4 +11,4 @@
     </div>
 @endif
 
-@yield('section')
+@yield('content')

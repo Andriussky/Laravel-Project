@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.admin.main')
 
 <h1>Editing {{$user->name}}</h1>
 <span>Redagavimo forma</span>

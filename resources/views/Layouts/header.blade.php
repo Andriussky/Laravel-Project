@@ -5,11 +5,8 @@
                 <img src="{{asset('/img/logo.png')}}" alt="logo" class="logo">
             </a>
             <a href="/login">
-                <sl-avatar
-                    initials="{{isset($user) ? $user->getInitials() : ''}}"
-                    class="right hide-on-med-and-down"
-                    label="User avatar">
-                </sl-avatar>
+
+
             </a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li>[{{app()->getLocale()}}]</li>
