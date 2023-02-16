@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.admin.main')
 
 <h1>Editing {{$product->name}}</h1>
 <span>Redagavimo forma</span>

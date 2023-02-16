@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -19,13 +20,36 @@ use Laravel\Sanctum\HasApiTokens;
  * @property string $email
  * @property Carbon $email_verified_at
  * @property string $password
+ * @property string $role
  * @property string $remember_token
+ * @property Person $person
  * @property Carbon $created_at
  * @property Carbon $updated_at
  */
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens;
+    use HasFactory;
+    use Notifiable;
+
+    public const ROLE_ADMIN   = 'admin';
+    public const ROLE_USER    = 'user';
+    public const ROLE_MANAGER = 'manager';
+    public const ROLE_PM      = 'prod_manager';
+
+    public const ROLES = [
+        self::ROLE_ADMIN,
+        self::ROLE_USER,
+        self::ROLE_MANAGER,
+        self::ROLE_PM,
+    ];
+
+    public const ROLE_DEFAULT = self::ROLE_USER;
+
+
+    protected  $guarded = [
+        'role',
+    ];
 
     /**
      * The attributes that are mass assignable.
@@ -57,13 +81,33 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-    public function person(): HasMany
+    public function person(): HasOne
     {
-        return $this->hasMany(Person::class);
+        return $this->hasOne(Person::class);
     }
 
     public function orders(): HasMany
     {
         return $this->hasMany(Order::class);
+    }
+
+    public function addresses(): HasMany
+    {
+        return $this->hasMany(Address::class);
+    }
+
+    public function getInitials(): string
+    {
+        $parts    = explode(' ', $this->person);
+        $initials = '';
+        foreach ($parts as $part) {
+            $initials .= mb_substr($part, 0, 1);
+        }
+        return $initials;
+    }
+
+    public function __toString(): string
+    {
+        return '[' . $this->name . '] ' . $this->person;
     }
 }

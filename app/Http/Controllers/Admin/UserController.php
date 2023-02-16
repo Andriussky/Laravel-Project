@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -22,9 +23,16 @@ class UserController extends Controller
 
     public function store(UserRequest $request)
     {
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = $request->password;
+        if (Auth::user()->role === User::ROLE_ADMIN){
+            $user->role = $request->role;
+        }
+        $user->save();
 
 
-        $user = user::create($request->all());
         return redirect()->route('users.show', $user);
     }
 
@@ -42,9 +50,18 @@ class UserController extends Controller
     public function update(UserRequest $request, User $user)
     {
 
+        $data = $request->all();
+        if ($request->password === null){
+            unset($data['password']);
+        }
 
+        $user->name = $request->name;
+        $user->email = $request->email;
+        if (Auth::user()->role === User::ROLE_ADMIN){
+            $user->role = $request->role;
+        }
+        $user->save();
 
-        $user->update($request->all());
         return redirect()->route('users.show', $user);
     }
 

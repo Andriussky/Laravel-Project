@@ -18,6 +18,7 @@
                 <tr>
                     <td>{{$user->id}}</td>
                     <td>{{$user->name}}</td>
+                    <td>{{$user->role}}</td>
                     <td>{{$user->type}}</td>
                     <td>
                         <a href="{{route('users.edit', $user->id)}}" class="btn btn-primary">Edit</a>
