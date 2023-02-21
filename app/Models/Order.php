@@ -29,16 +29,13 @@ class Order extends Model
 {
     use HasFactory;
 
-    protected  $guarded = [
-        'status_id',
-        'payment_id',
-
-    ];
+    public const STATUS_NEW = 'new';
 
     protected $fillable = [
         'shipping_address_id',
         'billing_address_id',
         'user_id',
+        'status_id',
     ];
 
     public function user(): BelongsTo
@@ -79,7 +76,7 @@ class Order extends Model
             'order_id',
             'id',
             'id',
-            'product_id'
+            'product_id',
         );
 
 //      Alternatyva:

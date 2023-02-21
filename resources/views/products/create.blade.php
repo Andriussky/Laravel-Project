@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.admin.main')
 
 <h1>New </h1>
 <span>Kurimo forma</span>
@@ -19,7 +19,7 @@
     <input type="text" name="size" placeholder="Size" value=""><br>
     <input type="text" name="price" placeholder="Price" value=""><br>
     <input type="text" name="status_id" placeholder="Status ID" value=""><br>
-    <input type="file" name="image" placeholder="Image" value="{{$product->image}}"><br>
+    <input type="file" name="image" placeholder="Image" value=""><br>
 
     <hr>
     <input type="submit" class="waves-effect waves-light btn" value="Atnaujinti">
