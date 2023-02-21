@@ -48,7 +48,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
 
     protected $guarded = [
-        'role',
+
     ];
 
     /**
@@ -60,6 +60,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
+use App\Http\Requests\UserStoreRequest;
+use App\Http\Requests\UserUpdateRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,7 +23,7 @@ class UserController extends Controller
         return view('user.create');
     }
 
-    public function store(UserRequest $request)
+    public function store(UserStoreRequest $request)
     {
         $user = new User();
         $user->name = $request->name;
@@ -47,7 +49,7 @@ class UserController extends Controller
         return view('user.edit', compact('user'));
     }
 
-    public function update(UserRequest $request, User $user)
+    public function update(UserUpdateRequest $request, User $user)
     {
 
         $data = $request->all();
