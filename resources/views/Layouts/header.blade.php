@@ -12,13 +12,13 @@
                 <li>[{{app()->getLocale()}}]</li>
                 <li></li>
                 <li><a href="/">Pradžia</a></li>
-                <li><a href="{{route('orders.index')}}">Užsakymai</a></li>
-                <li><a href="{{route('products.index')}}">Prekės</a></li>
-                <li><a href="{{route('categories.index')}}">Kategorijos</a></li>
-                <li><a href="{{route('statuses.index')}}">Statusai</a></li>
-                <li><a href="{{route('users.index')}}">Vartotojai</a></li>
-                <li><a href="{{route('persons.index')}}">Asmenys</a></li>
-                <li><a href="{{route('addresses.index')}}">Adresai</a></li>
+                <li><a href="{{route('orders.index')}}">Orders</a></li>
+                <li><a href="{{route('products.index')}}">Products</a></li>
+                <li><a href="{{route('categories.index')}}">Categories</a></li>
+                <li><a href="{{route('statuses.index')}}">Statuses</a></li>
+                <li><a href="{{route('users.index')}}">Users</a></li>
+                <li><a href="{{route('persons.index')}}">Persons</a></li>
+                <li><a href="{{route('addresses.index')}}">Addresses</a></li>
                 <li></li>
             </ul>
             <a href="{{route('profile.edit')}}">{{ __('Profile') }}</a>
@@ -28,4 +28,17 @@
             </form>
         </div>
     </nav>
+    @auth
+        <ul class="hidden w-8/12 md:flex items-center justify-center space-x-8">
+            <li>
+                <span>{{auth()?->user()?->email}}</span>
+            </li>
+            @if (auth()?->user()?->isAdmin())
+                <li>
+                    <a href="{{route('users.index')}}">
+                        {{ __('Users') }}
+                    </a>
+                </li>
+        @endif
+    @endauth
 </header>

@@ -12,7 +12,7 @@
     <input type="text" name="email" placeholder="Email" value=""><br>
     <input type="password" name="password" placeholder="Password" value=""><br>
     <input type="password" name="password_confirmation" placeholder="confirm_password" value=""><br>
-    <select name="Role" id="role">
+    <select name="role" id="role">
         <option value="admin">Admin</option>
         <option value="user">User</option>
         <option value="manager">Manager</option>

@@ -19,6 +19,7 @@
                     <td>{{$product->id}}</td>
                     <td>{{$product->name}}</td>
                     <td>{{$product->price}}</td>
+                    <td>  <img src="{{$product->image}}" alt=""></td>
                     <td>
                         <a href="{{route('products.edit', $product->id)}}" class="btn btn-primary">Edit</a>
                         <form action="{{route('products.destroy', $product->id)}}" method="post">
