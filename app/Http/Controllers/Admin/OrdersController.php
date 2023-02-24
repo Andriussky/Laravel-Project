@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 
+use App\Events\OrderCreated;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderRequest;
 use App\Models\Order;
@@ -30,6 +31,9 @@ class OrdersController extends Controller
 
 
         $order = Order::create($request->all());
+
+        $this->dispatch(new OrderCreated($order));
+
         return redirect()->route('orders.show', $order);
     }
 
