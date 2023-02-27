@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Collection;
 
 class PersonsManager
 {
@@ -28,5 +29,10 @@ class PersonsManager
         DB::commit();
 
         return $person;
+    }
+
+    public function getById(int $id): Collection
+    {
+        return Person::where('id', $id)->get();
     }
 }
